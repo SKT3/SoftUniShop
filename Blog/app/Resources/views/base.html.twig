@@ -1,0 +1,149 @@
+{#
+   This is the base template used as the application layout which contains the
+   common elements and decorates all the other templates.
+   See http://symfony.com/doc/current/book/templating.html#template-inheritance-and-layouts
+#}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{% block title %}SoftUni Blog{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+
+<body id="{% block body_id %}{% endblock %}">
+
+{% block header %}
+    <header>
+        <div class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand"  rel="home" href="{{ path('blog_index') }}" title="Buy Sell Everyting">
+                        <img src="{{ asset('rsz_shop.jpg') }}" alt="Shop" />
+                    </a>
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('user_profile') }}">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    {{ app.user.fullName }}
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <span class="glyphicon glyphicon-scissors" aria-hidden="true"></span>
+                                    {#Editor#}
+                                    <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">add/delete product categories</a></li>
+                                    <li><a href="#">add/delete products</a></li>
+                                    <li><a href="#">move products between categories</a></li>
+                                    <li><a href="#">change quantities</a></li>
+                                    <li><a href="#">reorder products</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <span class="glyphicon glyphicon-king"></span>
+                                    {#Admin#}
+                                    <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">add/delete/edit product categories</a></li>
+                                    <li><a href="#">add/delete/edit products</a></li>
+                                    <li><a href="#">add/delete product categories</a></li>
+                                    <li><a href="#">add/delete/edit/ban users and their possessions</a></li>
+                                </ul>
+
+                            </li>
+                            <li>
+                                <a href="{{ path('security_logout') }}">
+                                    Logout
+                                </a>
+                            </li>
+                        {% elseif is_granted('ROLE_USER') %}
+                            <li><a href="{{ path('user_profile') }}">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    {{ app.user.fullName }}
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <span class="glyphicon glyphicon-scissors" aria-hidden="true"></span>
+                                    {#Editor#}
+                                    <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">add/delete product categories</a></li>
+                                    <li><a href="#">add/delete products</a></li>
+                                    <li><a href="#">move products between categories</a></li>
+                                    <li><a href="#">change quantities</a></li>
+                                    <li><a href="#">reorder products</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="{{ path('security_logout') }}">
+                                    Logout
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{{ path('user_register') }}">
+                                    <span class="glyphicon glyphicon-registration-mark" aria-hidden="true"></span>
+                                    REGISTER
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('security_login') }}">
+                                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                                    LOGIN
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+<div class="container body-container">
+    {% block body %}
+        <div class="row">
+            <div id="main" class="col-sm-9">
+                {% block main %}{% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+</div>
+
+{% block footer %}
+    <footer>
+        <div class="container modal-footer">
+            <p>&copy; 2016 - Software University Foundation</p>
+        </div>
+    </footer>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>
+    <script src="{{ asset('js/moment.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('js/allusersshow.js') }}"></script>
+{% endblock %}
+
+</body>
+</html>
