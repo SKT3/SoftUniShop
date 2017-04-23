@@ -1,0 +1,19 @@
+.router-nav a{
+    color: rgba(0,0,0,0.6);
+    text-align: center;
+    width:50%;
+    height: 40px;
+    line-height: 40px;
+}
+
+
+.router-nav a.active{
+    background: #337ab7;
+    color: white;
+}
+
+.router-nav{
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+}

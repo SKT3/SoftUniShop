@@ -1,0 +1,15 @@
+<nav class="navbar navbar-light bg-faded">
+  <a class="navbar-brand" routerLink="home">Home</a>
+  <div *ngIf="user" class="pull-right">
+      <span>
+          <a routerLink="profile">
+              <i class="fa fa-user"></i>
+              {{user.email}}
+          </a>
+      </span>
+      <span>({{user.role}})</span>
+  </div>
+  <div *ngIf="!user" class="pull-right">
+      <a routerLink="auth">Login</a>
+  </div>
+</nav>
