@@ -1,0 +1,45 @@
+<div class="col-md-6" style="transform: translate(50%);">
+  <div class="breadcumbs flex">
+      <span>Payment</span>
+  </div>
+  <div class="stage">
+    <div class="info" *ngIf="user">
+      <div class="flex user-detail">
+        <div>
+          <i class="label-icon fa fa-user"></i>
+          <span>
+            {{user.first_name}}
+          </span>
+          <span>
+            {{user.last_name}}
+          </span>
+        </div>
+        <div class="">
+          <i class="label-icon fa fa-envelope"></i>{{user.email}}
+        </div>
+        <div class="user-cash">
+          <i class="label-icon fa fa-money" aria-hidden="true"></i> ${{user.cash}}
+        </div>
+      </div>
+      <div class="divider">
+      </div>
+      <div class="order-info" *ngIf="cart">
+        <div class="flex">
+          <span class="user-cash"><span class="label-icon">Subtotal</span><span *ngIf="!cart.hasDiscount">${{cart.totalPrice}}</span><span *ngIf="cart.hasDiscount">${{cart.totalPriceDiscount}}</span></span>
+          <span><i class="label-icon fa fa-truck" aria-hidden="true"></i>Free</span>
+          <span class="user-cash"><span class="label-icon">Total</span><span *ngIf="!cart.hasDiscount">${{cart.totalPrice}}</span><span *ngIf="cart.hasDiscount">${{cart.totalPriceDiscount}}</span></span>
+        </div>
+      </div>
+      <div class="confirm">
+        <div *ngIf="!loading" class="button" (click)="finalize()">
+          Confirm
+        </div>
+        <div class="sk-folding-cube" *ngIf="loading">
+          <div class="sk-cube1 sk-cube"></div>
+          <div class="sk-cube2 sk-cube"></div>
+          <div class="sk-cube4 sk-cube"></div>
+          <div class="sk-cube3 sk-cube"></div>
+        </div>
+      </div>
+    </div>
+</div>

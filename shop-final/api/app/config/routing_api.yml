@@ -1,0 +1,112 @@
+user:
+    path: /user
+    defaults: { _controller: AppBundle:User:get }
+    methods: [GET]
+login:
+    path: /login
+    defaults: { _controller: AppBundle:Auth:login }
+    methods: [POST]
+
+logout:
+    path: /logout
+    defaults: { _controller: AppBundle:Auth:logout }
+    methods: [POST]
+
+register:
+    path: /register
+    defaults: { _controller: AppBundle:Auth:register }
+    methods: [POST]
+
+users:
+    path: /users
+    defaults: { _controller: AppBundle:User:getUsers }
+    methods: [GET]
+
+user-delete:
+    path: /user/{id}
+    defaults: { _controller: AppBundle:User:deleteUser }
+    methods: [DELETE]
+
+user-update:
+    path: /user/{id}
+    defaults: { _controller: AppBundle:User:updateUser }
+    methods: [POST]
+
+products:
+    path: /products
+    defaults: { _controller: AppBundle:Product:getProducts }
+    methods: [GET]
+
+product:
+    path: /product/{id}
+    defaults: { _controller: AppBundle:Product:getProduct }
+    methods: [GET]
+
+product-update:
+    path: /product/{id}
+    defaults: { _controller: AppBundle:Product:updateProduct }
+    methods: [POST]
+
+product-delete:
+    path: /product/{id}
+    defaults: { _controller: AppBundle:Product:deleteProduct }
+    methods: [DELETE]
+
+rating:
+    path: /product/rating
+    defaults: { _controller: AppBundle:Product:putRating }
+    methods: [PUT]
+
+categories:
+    path: /categories
+    defaults: { _controller: AppBundle:Category:getCategories }
+    methods: [GET]
+
+category:
+   path: /category/{id}/{page}/{offset}
+   defaults: { _controller: AppBundle:Category:getCategory, page: 1, offset: 5 }
+   methods: [POST]
+
+category-delete:
+    path: /category
+    defaults: { _controller: AppBundle:Category:deleteCategory }
+    methods: [DELETE]
+
+brands:
+    path: /brands
+    defaults: { _controller: AppBundle:Brand:getBrands }
+    methods: [GET]
+
+brand:
+    path: /brand/{id}
+    defaults: { _controller: AppBundle:Brand:getBrand }
+    methods: [GET]
+
+brand-products:
+    path: /brand-products/{id}
+    defaults: { _controller: AppBundle:Brand:getBrandProducts }
+    methods: [GET]
+
+cart-get:
+    path: /cart
+    defaults: { _controller: AppBundle:Cart:getCart }
+    methods: [GET]
+
+cart-add-product:
+    path: /cart/add
+    defaults: { _controller: AppBundle:Cart:addProduct }
+    methods: [POST]
+
+cart-change-quantity:
+    path: /cart/quantity
+    defaults: { _controller: AppBundle:Cart:changeQuantity }
+    methods: [POST]
+
+cart-remove-product:
+    path: /cart/remove
+    defaults: { _controller: AppBundle:Cart:removeProduct }
+    methods: [POST]
+checkout:
+    path: /checkout
+    defaults: { _controller: AppBundle:Cart:checkout }
+    methods: [POST]

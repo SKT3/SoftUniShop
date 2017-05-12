@@ -1,0 +1,79 @@
+<!-- <div class="quick-view-container col-md-12">
+    <div class="quick-view-product col-md-12" *ngIf="product != null">
+        <div class="row wrap">
+            <div class="close-button" (click)="dismiss()">
+                <i class="fa fa-times"></i>
+            </div>
+            <div class="img-wrap col-md-12">
+                <cl-image  public-id="{{product.id}}_{{imageIndex}}"  width="567" height="567" format="jpg" crop="fit" gravity="north" quality="100">
+                    <cl-transformation  gravity="north" width="567" height="567"  quality=100 crop="fit"></cl-transformation>
+                </cl-image>
+            </div>
+            <div class="row overlay">
+                <div class="flex center switcher">
+                    <span *ngFor="let i of [1,2,3]" (click)="imageIndex = i" [class.active]="i == imageIndex"></span>
+                </div>
+                <h3 class="product-name">{{product.name}}</h3>
+                <h4 class="product-price">${{product.extra.price}}</h4>
+
+                <h5 class="product-description">{{product.extra.description}}</h5>
+            </div>
+
+        </div>
+        <div class="row quick-view-buttons">
+            <div class="">
+                ADD TO CART
+            </div>
+            <div class="">
+                VIEW PRODUCT
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="modal fade" id="quick-view-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body" *ngIf="product">
+          <div class="row">
+
+          <div class="col-md-5 grid-first">
+              <div class="flex controls">
+                    <span class="control prev" (click)="prevImage()"><i class="fa fa-chevron-left"></i></span>
+                    <span class="control next" (click)="nextImage()"><i class="fa fa-chevron-right"></i></span>
+              </div>
+              <cl-image  public-id="{{product.id}}_{{imageIndex}}"  width="385" format="jpg" crop="fit" gravity="north" quality="100">
+                  <cl-transformation  gravity="north"  width="385"  quality=100 crop="fit"></cl-transformation>
+              </cl-image>
+
+          </div>
+          <div class="col-md-7">
+              <span class="dismiss" data-dismiss="modal">
+                  <i class="fa fa-times"></i></span>
+              <div class="product-title">
+                  {{product.name}}
+              </div>
+              <div class="product-price">
+                  <div class="price-default" [class.line]="product.discount">
+                      ${{product.extra.price}}
+                  </div>
+                  <div class="price-discount" *ngIf="product.discount">
+                    ${{product.discountPrice}}
+                  </div>
+              </div>
+              <div class="qty">
+                  <input type="number" [min]="1" [max]="product.quantity" class="form-control number-input" [(ngModel)]="quantity" >
+              </div>
+              <div class="buttons">
+                  <div class="add-to-cart">
+                      ADD TO CART
+                  </div>
+              </div>
+              <div class="product-description">
+                  {{product.extra.description}}
+              </div>
+          </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

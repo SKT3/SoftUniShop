@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.navbar.bg-faded{
+    background: white;
+    color:black;
+    font-family: Montserrat;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 12;
+}
+
+.cart{
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s ease-in, opacity 0.2s ease-in;
+    position: absolute;
+    top: 71px;
+    left: -300px;
+    z-index: 40;
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.5);
+/* bottom: 0px; */
+}
+
+.cart-anchor:hover .cart{
+    visibility: visible;
+    opacity: 1;
+}
+
+.navbar-brand{
+    color: black;
+    text-transform: UPPERCASE;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 0px;
+    height: 50px;
+}
+
+.navbar-brand span:first-child{
+    margin-left: -20px;
+}
+
+.navbar-brand span.second{
+    font-size: 10px;
+    display: block;
+    margin-top: -30px;
+    margin-left: 55px;
+}
+
+.navbar{
+    border-radius: 0px;
+}
+
+.navbar-nav > div > a{
+    color: black;
+    font-weight: bold;
+    font-family: Roboto;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.navbar-nav > div > a:hover{
+        color: #aa8c5f !important;
+}
+.nav > li > a:hover, .nav > li > a:focus{
+    cursor: pointer;
+    color: #aa8c5f;
+    background: transparent;
+}
+
+.nav > li > a:hover{
+    color: #aa8c5f !important;
+}
+
+.cart-count{
+    position: absolute;
+        background: #1dae84;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        border-radius: 50%;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        top: 35px;
+}
+
+.navbar-nav li{
+    display:inline-block;
+    float: none;
+}
+
+.navbar-nav li.nav-item.icon{
+    line-height: 40px;
+    font-size: 17px;
+
+}
+
+.navbar-collapse{
+    text-align: center;
+}
+
+.collapse.navbar-collapse{
+    width: 70%;
+    margin: auto;
+}
+
+.navbar-nav{
+    display: inline-block;
+    float: none;
+}
+
+.dropdown{
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    background: #f7f7f7;
+}
+
+.dropdown-content{
+    display: none;
+    min-width: 150px;
+    position: absolute;
+    left: 0px;
+    padding: 0px;
+    z-index: 1;
+}
+
+.dropdown-content li{
+    display: block;
+}
+
+.dropdown-content a{
+    color: black;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.dropdown-content a:hover{
+    background-color: #eee;
+}
+
+.navbar-nav .button{
+    padding-left: 15px;
+    padding-right: 15px;
+    text-transform: uppercase;
+    font-size: 10px;
+    background: transparent;
+    text-align: center;
+    height: 50px;
+    line-height: 40px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    box-sizing: border-box;
+    position: relative;
+    display: inline-block;
+}
+
+.navbar-nav > .nav-item.icon > a{
+    color: black;
+    width: auto;
+    line-height: 40px;
+    font-size: 17px;
+
+}
+
+.user-dropdown{
+  position: absolute;
+  top: 71px;
+  width: 150px;
+  color: white;
+  /* z-index: 41; */
+  background: white;
+  color: black;
+  text-align: center;
+
+  box-shadow: 0px 2px 2px rgba(0,0,0,0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s ease-in, opacity 0.2s ease-in;
+}
+
+.user-dropdown ul{
+    padding: 0px;
+}
+
+.user-dropdown ul li{
+  width: 100%;
+  cursor: pointer;
+}
+
+.user-anchor:hover .user-dropdown{
+  visibility: visible;
+  opacity: 1;
+}
+
+/*.navbar-nav .button:before{
+    transform: translateX(100%);
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 99.5%;
+    height: 2px;
+    border-bottom: 2px solid transparent;
+    border-left: 2px solid transparent;
+}
+
+.navbar-nav .button:after{
+    transform: translateX(-100%);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 99.5%;
+    height: 2px;
+    border-top: 2px solid transparent;
+    border-right: 2px solid transparent;
+}
+
+.navbar-nav .button.selected{
+    background:  #f15d60;
+    color: white;
+}
+
+.navbar-nav .button:hover:before{
+    box-sizing: border-box;
+    transition: .1s transform linear, .1s height linear .1s;
+    transform: translateX(0);
+    height: 100%;
+    border-color: #1dae84;
+
+}
+.navbar-nav .button:hover:after{
+   box-sizing: border-box;
+   transition: .1s transform linear .2s, .1s height linear .3s;
+   transform: translateX(0);
+   height: 100%;
+   border-color: #1dae84;
+}*/

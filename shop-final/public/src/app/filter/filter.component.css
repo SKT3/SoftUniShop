@@ -1,0 +1,44 @@
+.filter > div{
+    width: 60%;
+    margin: auto;
+    text-align: left;
+    font-family: Montserrat;
+}
+
+.filter .filter-block-title{
+    font-size: 16px;
+    font-weight: bold;
+    color:#aa8c5f;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.filter .divider{
+
+    width: 100%;
+    height: 2px;
+    margin-top: 20px;
+}
+
+.range{
+    color: #1dae84;
+    font-weight: bold;
+}
+
+.slider{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.filter-value-count{
+    color: rgba(0,0,0,0.35)
+}
+
+.filter-value-name{
+    font-weight: normal;
+}
+
+.noUi-horizontal{
+    height: 8px;
+}

@@ -1,0 +1,62 @@
+<div class="category flex">
+    <div class="cd-main-content row category-wrap"  [class.left]="beginAnimation">
+        <!-- <div class="title" [class.right]="filterVisible" *ngIf="category">
+            <h3>{{category.name | uppercase}}</h3>
+        </div> -->
+        <div class="category-header col-md-12" *ngIf="category || categoryName">
+            <h3>{{categoryName | uppercase}}</h3>
+        </div>
+        <filters class="filters"
+                *ngIf="filters && ready"
+                [filtersInput]="filters"
+                (onHide)="filterVisible = $event"
+                (onFilterChange)="handleFilterChange($event)">
+        </filters>
+        <section class="wrap col-md-9" [class.col-md-offset-1]="!filterVisible"  *ngIf="!loading">
+        <div class="col-md-10 result-info">
+                <span>Showing 1 - {{category.products.length}} of {{totalCount}} items</span>
+                <span class="offset">Show
+                    <select [(ngModel)]="offset" class="offset-select" name="">
+                        <option [value]="12">12</option>
+                        <option [value]="24">24</option>
+                        <option [value]="36">36</option>
+                    </select>
+                    <span>per page</span>
+                </span>
+                <span class="sort-by">Sort by:
+                    <select class="sort-select"  (change)="handleSort($event.target.value)">
+                        <option  [value]="null" [selected]="sortOrder == null">Default</option>
+                        <option  [value]="'ASC'" [selected]="sortOrder == 'ASC'">Price: Low to High</option>
+                        <option  [value]="'DESC'" [selected]="sortOrder == 'DESC'">Price: High to Low</option>
+                    </select>
+               </span>
+            </div>
+            <ul class="row flex mixit col-md-12" attr.data-ref="container"  *ngIf="category && ready">
+                <li class="mix"
+                    *ngFor="let product of category.products; let i = index;"
+                    attr.data-ref="item"
+                    attr.data-price="{{product.extra.price}}"
+                    attr.data-rating="{{product.rating.rating}}" >
+                      <product class="product thumb"
+                            [input]="product"
+                            [user]="user"
+                            [attr.product-id]="product.id"
+                            (quickViewSelect)="initQuickView(product)">
+                      </product>
+                </li>
+            </ul>
+            <paging class="row"
+                    [totalCount]="totalCount"
+                    [pageOffset]="offset"
+                    (pageSelect)="handlePageSelect($event)">
+            </paging>
+        </section>
+        <div class="sk-folding-cube" *ngIf="loading">
+          <div class="sk-cube1 sk-cube"></div>
+          <div class="sk-cube2 sk-cube"></div>
+          <div class="sk-cube4 sk-cube"></div>
+          <div class="sk-cube3 sk-cube"></div>
+        </div>
+    </div>
+    <quick-view class="quick-view" (dismissQuickView)="dismissQV($event)" [product]="quickViewProduct"></quick-view>
+</div>

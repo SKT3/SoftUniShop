@@ -1,0 +1,22 @@
+<div class="container">
+  <table class="table" *ngIf="users">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Cash</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of users">
+        <td>{{u.email}}</td>
+        <td>{{u.first_name}} {{u.last_name}}</td>
+        <td><span  class="badge {{u.roles.name}}">{{u.roles.name}}</span></td>
+        <td>${{u.cash}}</td>
+        <td><i class="fa fa-times" (click)="delete(u.id)"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

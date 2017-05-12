@@ -1,0 +1,76 @@
+.col-md-6{
+  font-family: Montserrat;
+}
+
+.breadcumbs span i{
+  margin: auto 10px;
+  color: rgba(0,0, 0,0.5);
+}
+
+.breadcumbs{
+  justify-content: center;
+}
+
+.breadcumbs span.active{
+  color: #ccba9c;
+}
+
+.info{
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.2), -1px 1px 1px rgba(0,0,0,0.2);
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(0,0,0,0.02);
+
+}
+
+.user-detail{
+    justify-content: space-around;
+}
+
+.label-icon{
+  margin-right: 5px;
+  color: rgba(0,0,0,0.5);
+  font-weight: normal;
+}
+
+.user-cash{
+  color: #1dae84;
+  font-weight: bold;
+}
+
+.divider{
+  width: 80%;
+  margin: 20px auto;
+  border-top: 1px solid rgba(0,0,0,0.4);
+}
+
+.order-info .flex{
+  justify-content: space-around;
+}
+
+.confirm .button{
+  margin-top: 50px;
+  /* height: 50px; */
+  background: #ccba9c;
+  color: white;
+  line-height: 2.3;
+  font-weight: bold;
+  text-align: center;
+  font-size: 15px;
+  padding: 0.6rem 1.7rem;
+  font-family: Montserrat;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.confirm{
+  width: 20%;
+  margin: auto
+}
+
+.sk-folding-cube{
+  margin-top: 40px;
+  width: 20px;
+  height: 20px;
+}

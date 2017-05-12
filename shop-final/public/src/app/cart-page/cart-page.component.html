@@ -1,0 +1,90 @@
+<div class="cart-container">
+    <h4 class="title" *ngIf="cart">Shopping cart</h4>
+    <h5 class="subtitle" *ngIf="cart">You have {{cart.products.length}} products in your shopping cart</h5>
+    <div class="cart" *ngIf="cart && cart.products.length > 0">
+        <table  class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>PRODUCT</th>
+                    <th>PRICE</th>
+                    <th>QUANTITY</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cartProduct of cart.products">
+                    <td>
+                        <i class="fa fa-times" (click)="removeProduct(cartProduct.product)"></i>
+                    </td>
+                    <td>
+                        <cl-image #image client_hints="true" width="auto" [routerLink]="['/product', cartProduct.product.id]" public-id="{{cartProduct.product.id}}_1" height="120" format="jpg" crop="fill"  quality="100">
+                            <cl-transformation width="auto" height="120" quality=100 crop="fill"></cl-transformation>
+                        </cl-image>
+                    </td>
+                    <td>
+                        <div class="product-name">
+                            {{cartProduct.product.name}}
+                        </div>
+                        <div class="product-color">
+                            <label>Color: </label><span>{{cartProduct.product.extra.color}}</span>
+                        </div>
+                        <div class="product-size">
+                            <label>Size: </label><span>{{cartProduct.product.extra.size}}</span>
+                        </div>
+                    </td>
+                    <td class="product-price">
+                        <div class="price-default" [class.line]="cartProduct.product.discount">
+                          ${{cartProduct.product.extra.price}}
+                        </div>
+                        <div class="price-discount" *ngIf="cartProduct.product.discount">
+                          ${{cartProduct.product.discountPrice}}
+                        </div>
+                    </td>
+                    <td class="cell-qty">
+                        <div class="qty">
+                            <input type="number" [min]="1" [max]="cartProduct.product.quantity" class="form-control number-input" [value]="cartProduct.quantity" (change)="changeQuantity($event, cartProduct.product)">
+                        </div>
+                    </td>
+                    <td class="product-total">
+                        <div class="price-default" [class.line]="cartProduct.product.discount">
+                            ${{cartProduct.total}}
+                        </div>
+                        <div class="price-discount" *ngIf="cartProduct.product.discount">
+                          ${{cartProduct.totalDiscount}}
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="cart-total col-md-6 col-md-offset-6 mt-3">
+            <h4>CART TOTALS</h4>
+            <div class="subtotal flex">
+                <label>Subtotal: </label><span class="price" *ngIf="!cart.hasDiscount">${{cart.totalPrice}}</span>
+                <span class="price" *ngIf="cart.hasDiscount">${{cart.totalPriceDiscount}}</span>
+            </div>
+            <div class="shipping flex">
+                <label>Shipping: </label>
+                <span>FREE</span>
+            </div>
+            <div class="total flex">
+                <label>Total: </label>
+                <span class="price  total-price">
+                  <div class="price-default" [class.line]="cart.hasDiscount">
+                      ${{cart.totalPrice}}
+                  </div>
+                  <div class="price-discount" *ngIf="cart.hasDiscount">
+                      ${{cart.totalPriceDiscount}}
+                  </div>
+                </span>
+            </div>
+            <a [routerLink]="['/checkout']" class="to-checkout col-md-6 col-md-offset-6 mt-3">PROCEED TO CHECKOUT</a>
+        </div>
+
+    </div>
+    <h3 class="empty" *ngIf=" cart && cart.products.length == 0">
+        Your shopping cart is empty
+    </h3>
+</div>

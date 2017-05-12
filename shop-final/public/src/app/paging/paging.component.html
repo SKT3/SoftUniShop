@@ -1,0 +1,5 @@
+<ul class="flex">
+    <li class="flex-item prev"><i class="fa fa-chevron-left"></i></li>
+    <li class="flex-item" *ngFor="let i of pages" (click)="select(i)" [class.selected]=" i == pageSelected">{{i}}</li>
+    <li class="flex-item next"><i class="fa fa-chevron-right"></i></li>
+</ul>

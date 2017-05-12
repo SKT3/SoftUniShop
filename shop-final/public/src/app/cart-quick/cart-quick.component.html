@@ -1,0 +1,29 @@
+<div class="cart-quick-container" *ngIf="cart">
+    <h4 class="title">Shopping cart</h4>
+    <h5 class="subtitle">{{cart.products.length}} items in your shopping cart</h5>
+    <table class="table">
+        <tbody>
+            <tr *ngFor="let product of cart.products">
+                <td>
+                    <cl-image #image client_hints="true" width="auto" public-id="{{product.product.id}}_1" height="100" format="jpg" crop="fill"  quality="100">
+                        <cl-transformation width="auto" height="100" quality=100 crop="fill"></cl-transformation>
+                    </cl-image>
+                </td>
+                <td class="product-info">
+                    <div class="product-name">
+                        {{product.product.name}}
+                    </div>
+                    <div class="product-price-quantity">
+                        <span class="product-quantity">{{product.quantity}}</span><span class="times">x</span><span class="product-price">${{product.product.extra.price}}</span>
+                    </div>
+                </td>
+                <td class="product-remove"><i class="fa fa-times" (click)="removeProduct(product.product)"></i></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="total"><label>TOTAL: </label><span>${{cart.totalPrice}}</span></div>
+    <div class="buttons flex">
+        <a class="view-cart" routerLink="cart">VIEW CART</a>
+        <a class="checkout">CHECKOUT</a>
+    </div>
+</div>

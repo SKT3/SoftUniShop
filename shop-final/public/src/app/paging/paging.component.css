@@ -1,0 +1,38 @@
+ul{
+    list-style: none;
+}
+
+ul.flex{
+    justify-content: center;
+    width: 80%;
+    align-items: center;
+    font-family: Montserrat;
+}
+
+ul.flex .flex-item{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    margin: 2px;
+    cursor: pointer;
+}
+
+ul.flex .flex-item:hover{
+    background: black;
+    color: white;
+}
+
+ul.flex .flex-item.selected{
+  background: black;
+  color: white;
+}
+
+ul.flex .flex-item.next, ul.flex .flex-item.prev{
+    border: none;
+}
+
+ul.flex .flex-item.next:hover, ul.flex .flex-item.prev:hover{
+    background: none;
+    color: black;
+}

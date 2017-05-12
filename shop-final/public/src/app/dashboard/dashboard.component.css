@@ -1,0 +1,23 @@
+.badge{
+  color: white;
+  padding: 0.6rem 1.7rem;
+  border-radius: 2px;
+  text-align: center;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+.badge.basic{
+  background: #0074D9;
+}
+
+.badge.editor{
+  background: #3D9970;
+}
+
+.badge.admin{
+  background: #FF4136;
+}
+
+.fa-times{
+  cursor: pointer;
+}

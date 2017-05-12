@@ -1,0 +1,55 @@
+<div class="product-thumbnail">
+    <div class="card"
+         *ngIf="product">
+    <div class="img-wrap">
+        <cl-image
+          #image client_hints="true"
+          width="auto"
+          height="280"
+          public-id="{{product.id}}_1"
+          [routerLink]="['/product', product.id]"
+          format="jpg"
+          crop="fill"  >
+            <cl-transformation width="auto" height="280"  crop="fill"></cl-transformation>
+        </cl-image>
+        <a class="overlay" [routerLink]="['/product', product.id]">
+        </a>
+        <a class="quick-view" (click)="selectForQuickView(product)">QUICK VIEW</a>
+        <div class="discount" *ngIf="product.discount">
+          - {{product.discount.percentage}}%
+        </div>
+        <div class="add-to-fav-button">
+            <i class="fa fa-heart-o"></i>
+        </div>
+    </div>
+    <a class="product-extra">
+        <div class="flex product-info">
+            <div class="text-center product-title">
+                {{product.name}}
+            </div>
+            <div class="text-center product-price">
+                <div class="price-default" [class.line]="product.discount">
+                  ${{product.extra.price}}
+                </div>
+                <div class="price-discount" *ngIf="product.discount">
+                  ${{product.discountPrice}}
+                </div>
+            </div>
+        </div>
+        <product-rating
+          [rating]="product.rating.rating"
+          (ratingSelected)="handleRatingSelect($event)">
+        </product-rating>
+        <div class="button-wrap" >
+            <div *ngIf="!user || (user && user.is('basic'))" class="button" (click)="addToCart()">
+                ADD TO CART
+            </div>
+            <!--  Editor actions -->
+            <div class="flex editor-action" *ngIf="user && !user.is('basic')">
+              <span (click)="edit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</span>
+              <span (click)="delete()"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</span>
+            </div>
+        </div>
+    </a>
+</div>
+</div>

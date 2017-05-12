@@ -1,0 +1,60 @@
+<nav class="navbar navbar-light bg-faded">
+
+  <div class="collapse navbar-collapse">
+     <a class="navbar-brand" routerLink="home">
+         <cl-image #image client_hints="true" width="auto" public-id="logo2" height="70" format="jpg" crop="fill"  >
+             <cl-transformation width="auto" height="70" crop="fill"></cl-transformation>
+         </cl-image><span><span>STEFAN</span><span class="second">Since who cares</span></span></a>
+    <ul class="nav navbar-nav inline-flex" *ngIf="categories">
+      <div class="nav-item button dropdown" *ngFor="let category of categories">
+        <a [routerLink]="['/category', category.id]">{{category.name}}</a>
+
+        <ul class="dropdown-content" *ngIf="category.children.length > 0">
+          <li *ngFor="let childCategory of category.children">
+            <a [routerLink]="['/category', childCategory.id]">{{childCategory.name}}</a>
+          </li>
+        </ul>
+      </div>
+
+    </ul>
+    <div class="nav navbar-nav navbar-right">
+      <li class="nav-item icon">
+        <a>
+          <i class="fa fa-heart-o"></i>
+        </a>
+      </li>
+      <li class="nav-item icon cart-anchor">
+        <a>
+          <i class="fa fa-shopping-bag"></i>
+          <span *ngIf="cartProductsCount > 0" class="cart-count">{{cartProductsCount}}</span>
+        </a>
+        <cart-quick class="cart"></cart-quick>
+      </li>
+      <li class="nav-item icon" *ngIf="user && user.is('admin')">
+        <a [routerLink]="['/dashboard']">
+          <i class="fa fa-tachometer" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li class="nav-item icon user-anchor">
+        <a routerLink="profile" >
+          <i class="fa fa-user-circle-o"></i>
+        </a>
+        <div class="user-dropdown">
+          <ul class="list" *ngIf="!user">
+            <li class="list-item" (click)="initAuth()">Log in</li>
+            <li class="list-item">Sign up</li>
+          </ul>
+          <ul class="list" *ngIf="user">
+             <li class="list-item">{{user.email}}</li>
+             <li class="list-item">Your orders</li>
+             <li class="list-item">Profile info</li>
+             <li class="list-item" (click)="logout()">Logout</li>
+          </ul>
+        </div>
+      </li>
+    </div>
+    <!-- <ul *ngIf="!user" class="nav navbar-nav navbar-right">
+          <li class="nav-item"><a routerLink="auth">Login</a></li>
+      </ul> -->
+  </div>
+</nav>

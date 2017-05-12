@@ -1,0 +1,268 @@
+.product-color{
+    width: 25px;
+    height: 25px;
+    border: 1px solid #eee;
+}
+
+.flex.space-between{
+    align-items: center;
+}
+
+.img-wrap.filter-visible cl-image img{
+    height: 280px;
+}
+
+.product-thumbnail.scale{
+    transform: scale(0.8);
+}
+
+.product-thumbnail{
+    transition: transform 0.3s;
+    max-height: 360px;
+    overflow:hidden;
+}
+
+img{
+    display: none !important;
+}
+
+.img-wrap img{
+
+}
+
+.product-description{
+    margin-top: 5px;
+}
+
+.product-thumbnail{
+    font-family: Montserrat;
+}
+
+.product-title{
+    color: black;
+    transform: 0.2s 0.2s ease-in;
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.product-price{
+    color: #1dae84;
+    font-weight: bold;
+    align-self: center;
+    font-size: 1em;
+}
+
+.product-info{
+    justify-content: space-between;
+    transform: scale(0.9);
+}
+
+.add-to-fav-button{
+    position: absolute;
+    transform: 0.2s 0.2s ease-in;
+    top: 5px;
+    font-size: 30px;
+    right: 10px;
+    transform: translateY(-100%);
+    transition: transform ease-in 0.2s;
+    width: 30px;
+    height: 30px;
+    color: white;
+    font-size: 15px;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.add-to-fav-button i{
+    transition: transform ease-in 0.2s;
+    transform: scale(0.9);
+}
+
+.add-to-fav-button:hover i{
+    transform: scale(1.2);
+}
+
+.fa-star{
+    color: #e5b674;
+}
+
+.card{
+    cursor: pointer;
+}
+
+.product-buttons{
+    height: 30%;
+    width: 100%;
+    background: white;
+    opacity: .9;
+    bottom: 0px;
+    transform: translateY(100%);
+    transition: transform ease-in 0.2s;
+    position: relative;
+    z-index: 30;
+}
+
+.product-thumbnail:hover .product-buttons{
+    transform: translateY(0%);
+}
+
+
+.product-extra{
+    position: relative;
+    background: white;
+    padding: 5px;
+    /* width: 100%; */
+    /* height: 100%; */
+    display: block;
+    width: 100%;
+    width: 100%;
+    height: 180px;
+    transition: transform 0.15s ease-in
+}
+
+.button-wrap{
+    text-align: center;
+    margin-top: 22px;
+}
+
+.button-wrap .button{
+    color: white;
+    background: #ccba9c;
+    width: 50%;
+    margin: auto;
+    padding: 0.6rem 1.7rem;
+    font-family: Montserrat;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.button-wrap .button:hover{
+    background: #aa8c5f;
+}
+
+.overlay{
+    position: absolute;
+    top:0px;
+    left:0px;
+    width: 100%;
+    height: 100%;
+    background: #1dae84;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+}
+
+.quick-view{
+    position: absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    width: 50%;
+    margin: auto;
+    padding: 0.6rem 1.7rem;
+    text-align: center;
+    color: white;
+    border: 2px solid white;
+    top: 25%;
+    cursor: pointer;
+    transition: background 0.2s ease-in, transform 0.2s ease-in ;
+    z-index: 30;
+    font-weight: bold;
+    visibility: hidden;
+}
+
+.quick-view:hover{
+    background: white;
+    color: #1dae84;
+}
+
+.product-thumbnail:hover .overlay{
+    visibility: visible;
+    opacity: 0.7;
+}
+
+.product-thumbnail:hover .quick-view{
+    visibility: visible;
+    transform: scale(0.9);
+}
+
+
+.product-thumbnail:hover .product-extra{
+    transform: translateY(-50%);
+}
+
+.product-thumbnail:hover .add-to-fav-button{
+    transform: translateY(0%);
+}
+
+.product-buttons > div{
+    height: 50%;
+    width: 100%;
+    text-align: center;
+    background: rgba(0,0,0, 0.05);
+    color: black;
+    padding: 1em;
+}
+
+.product-buttons > div:hover{
+    color: rgba(0,0,0,0.6);
+}
+
+.product-buttons > div > i{
+    margin-right: 10px;
+    font-size: 20px;
+    position: relative;
+    vertical-align: middle;
+}
+
+.product-buttons > div > span{
+    position: relative;
+    vertical-align: middle;
+    font-weight: bolder;
+    font-family: Montserrat;
+}
+
+.img-wrap{
+    position: relative;
+    overflow: hidden;
+}
+.img-wrap img{
+    z-index: 0;
+}
+
+.img-wrap .product-buttons{
+    position: absolute;
+    bottom: 0px;
+}
+
+.editor-action{
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+}
+
+
+.editor-action > span{
+  margin-left: 20px;
+  /*font-size: 10px;*/
+}
+
+.price-default.line{
+  text-decoration: line-through;
+  color: rgba(0,0,0,0.5);
+}
+
+.discount{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
+  background: #fa6b6b;
+  padding: 5px;
+  font-weight: bold;
+  text-align: center;
+}

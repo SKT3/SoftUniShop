@@ -1,0 +1,342 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
+ */
+class User
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=256)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=256)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="first_name", type="string", length=256)
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=256)
+     */
+    private $lastName;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cash", type="integer")
+     */
+    private $cash;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="UserRoles", fetch="EAGER")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
+     */
+    private $roles;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="role_id", type="integer")
+     */
+    private $roleId;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="UserFavourites", cascade={"remove"})
+     * @ORM\JoinTable(name="users_favourites",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id",onDelete="CASCADE")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="favourite_id", referencedColumnName="id", unique=true, onDelete="CASCADE")}
+     *      )
+     */
+    private $favourites;
+
+    public function __construct()
+    {
+        $this->favourites = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function getForResponse()
+    {
+        $ret = array();
+        foreach (get_object_vars($this) as $key => $value) {
+            $ret[$key] = $value;
+        }
+
+        return $ret;
+
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set cash
+     *
+     * @param integer $cash
+     *
+     * @return User
+     */
+    public function setCash($cash)
+    {
+        $this->cash = $cash;
+
+        return $this;
+    }
+
+    /**
+     * Get cash
+     *
+     * @return integer
+     */
+    public function getCash()
+    {
+        return $this->cash;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return User
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+
+    /**
+     * Set roleId
+     *
+     * @param integer $roleId
+     *
+     * @return User
+     */
+    public function setRoleId($roleId)
+    {
+        $this->roleId = $roleId;
+
+        return $this;
+    }
+
+    /**
+     * Get roleId
+     *
+     * @return integer
+     */
+    public function getRoleId()
+    {
+        return $this->roleId;
+    }
+
+    /**
+     * Set roles
+     *
+     * @param \AppBundle\Entity\UserRoles $roles
+     *
+     * @return User
+     */
+    public function setRoles(\AppBundle\Entity\UserRoles $roles = null)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Get roles
+     *
+     * @return \AppBundle\Entity\UserRoles
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     *
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Add favourite
+     *
+     * @param \AppBundle\Entity\UserFavourites $favourite
+     *
+     * @return User
+     */
+    public function addFavourite(\AppBundle\Entity\UserFavourites $favourite)
+    {
+        $this->favourites[] = $favourite;
+
+        return $this;
+    }
+
+    /**
+     * Remove favourite
+     *
+     * @param \AppBundle\Entity\UserFavourites $favourite
+     */
+    public function removeFavourite(\AppBundle\Entity\UserFavourites $favourite)
+    {
+        $this->favourites->removeElement($favourite);
+    }
+
+    /**
+     * Get favourites
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFavourites()
+    {
+        return $this->favourites;
+    }
+}

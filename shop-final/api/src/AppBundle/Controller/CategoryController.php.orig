@@ -1,0 +1,137 @@
+<?php
+
+namespace AppBundle\Controller;
+
+
+use FOS\RestBundle\Controller\Annotations;
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Request\ParamFetcherInterface;
+use FOS\RestBundle\View\View;
+
+
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+
+use AppBundle\Entity\Product;
+use AppBundle\Entity\ProductRepository;
+
+use AppBundle\Entity\Category;
+use AppBundle\Entity\CategoryRepository;
+
+use AppBundle\Entity\Extra;
+use AppBundle\Entity\ExtraRepository;
+
+use AppBundle\Helper\ApiResponse;
+
+use Doctrine\Common\Collections\ArrayCollection;
+
+class CategoryController extends FOSRestController
+{
+    //Editors can add/delete product categories -> deleteProductAction() && createProductAction();
+
+
+    public function getCategoriesAction()
+    {
+        $category_repository = $this->getDoctrine()->getEntityManager()->getRepository('AppBundle:Category');
+
+        $categories = $category_repository->getAll();
+        //$categories = $category_repository->fingAll();
+
+        $categories = $this->container->get('jms_serializer')->toArray($categories);
+
+        return ApiResponse::success(['data' => $categories]);
+    }
+
+
+    public function deleteCategoryAction(Request $request)
+    {
+        try {
+            $em = $this->getDoctrine()->getEntityManager();
+            //1. data = { category_id, new_category: {name: 'abc', id: 123 }}
+            $params = $request->get('data');
+            $session = $request->getSession();
+            $user = $session->get('user');
+            //2. validate data
+            if (!filter_var($params['category_id'], FILTER_VALIDATE_INT) && $params['category_id'] > 0) {
+                throw new \Exception('Data error Incorrect' . $params['new_category']['id'] . 'given, must be of type integer positive');
+            }
+            if (!filter_var($params['new_category']['id'], FILTER_VALIDATE_INT) && $params['new_category']['id'] > 0) {
+                throw new \Exception('Data error Incorrect' . $params['new_category']['id'] . 'given, must be of type integer positive');
+            }
+            if (!is_string($params['new_category']['name']) && $params['new_category']['name'] != "") {
+                throw new \Exception('Data error Incorrect' . $params['new_category']['name'] . 'given, must be of type string not-empty');
+            }
+
+
+            //3.@TODO VALIDATE USER
+            if ($user === NULL) {
+                return ApiResponse::fail(['error' => 'No logged in User']);
+            }
+
+            if ($user->getRoles()->getName() == 'basic') {
+                return ApiResponse::fail(['error' => 'User does not have permission for this operation']);
+            }
+            //4.Get category to delete
+            $category_repository = $em->getRepository('AppBundle:Category');
+            $category_to_delete = $category_repository->getCategoryWithProducts($params['category_id']);
+            //5. get category_to_delete products
+            $products = $category_to_delete->getProducts();
+            //6. check if category you want to move products to exists
+            if (!$category_repository->exists($params['new_category']['id'])) {
+                throw new \Exception("Category " . $params['new_category']['name'] . "does not exists");
+            }
+
+            //7.move products
+            $em->getConnection()->beginTransaction(); // suspend auto-commit
+            try {
+                foreach ($products as $product) {
+                    $product->setCategoryId($params['new_category']['id']);
+                    $em->persist($product);
+                }
+                $em->remove($category_to_delete);
+                $em->flush();
+                $em->getConnection()->commit();
+                return ApiResponse::success(['data' => 'keik']);
+            } catch (\Exception $e) {
+                $em->getConnection()->rollBack();
+                throw $e;
+            }
+        } catch (\Exception $e) {
+            return ApiResponse::fail(['error' => $e->getMessage()]);
+        }
+
+    }
+
+    
+    public function getCategoryAction($id, $page, $offset, Request $request)
+    {
+
+        $filtersParam = $request->get('filters');
+        $sortParam = $request->get('sort');
+        $category_repository = $this->getDoctrine()->getEntityManager()->getRepository('AppBundle:Category');
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
+        $res = $category_repository->getOneBy(array('id' => $id),$page, $offset, $filtersParam, $sortParam);
+
+        $copy = $res['paginator']->getIterator()->getArrayCopy();
+        $paginatorSerialized = $this->container->get('jms_serializer')->toArray($copy);
+
+        $filters = $category_repository->getFilters($id, ['price', 'brand', 'size', 'color']);
+
+        $category = $res['category'];
+        $category->setProducts($paginatorSerialized);
+        $category = $this->container->get('jms_serializer')->toArray($category);
+
+        return ApiResponse::success(['data' => ['category' => $category, 'filters' => $filters, 'totalProducts' => $res['total'], 'filtersParam' => $filtersParam]]);
+
+    }
+
+}

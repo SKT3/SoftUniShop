@@ -1,0 +1,82 @@
+<div class="modal fade" id="edit-product-modal">
+  <div class="modal-dialog" role="document"  *ngIf="product">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <!--  Delete Action -->
+          <div *ngIf="action == 'delete'">
+            <h3 class="action-title">Delete product <span>{{product.name}}</span>?</h3>
+            <div class="flex controls" *ngIf="!loading">
+              <span (click)="accept()"><i class="fa fa-check" aria-hidden="true"></i></span>
+              <span (click)="decline()"><i class="fa fa-times" aria-hidden="true"></i></span>
+            </div>
+            <div class="sk-folding-cube" *ngIf="loading">
+              <div class="sk-cube1 sk-cube"></div>
+              <div class="sk-cube2 sk-cube"></div>
+              <div class="sk-cube4 sk-cube"></div>
+              <div class="sk-cube3 sk-cube"></div>
+            </div>
+          </div>
+          <!--  Edit Action -->
+          <div *ngIf="action == 'edit'">
+            <h3 class="action-title">Edit product <span>{{product.name}}</span></h3>
+            <table class="table" *ngIf="!loading">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Quantity</th>
+                  <th>Category</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 150px">
+                    <cl-image #image client_hints="true" width="auto" [routerLink]="['/product', product.id]" public-id="{{product.id}}_1" height="120" format="jpg" crop="fill"  quality="100">
+                        <cl-transformation width="auto" height="120" quality=100 crop="fill"></cl-transformation>
+                    </cl-image>
+                  </td>
+                  <td>
+                    <div class="qty">
+                        <input type="number" [min]="1" class="form-control number-input" [(ngModel)]="quantity" (ngModelChange)="onChange($event, 'quantity')">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group select" *ngIf="categories.length > 0" >
+                      <select class="select-input" [(ngModel)]="category" (ngModelChange)="onChange($event, 'category')">
+                        <option *ngFor="let cat of categories" [attr.selected]="product.category_id == cat.id" [value]="cat.id">{{cat.name}}</option>
+                      </select>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="text-center">
+              <button *ngIf="!loading" class="submit-button" name="button" (click)="submitEdit()">Submit</button>
+            </div>
+            <!-- <div class="flex edit-actions" *ngIf="!loading">
+              <div class="form-group">
+
+              </div>
+              <div class="form-group select" *ngIf="categories.length > 0">
+                <label style="margin-top: 20px;">Change category</label>
+                <select class="select-input" name="">
+                  <option *ngFor="let cat of categories" [selected]="product.category_id == cat.id" [value]="cat.id">{{cat.name}}</option>
+                </select>
+              </div>
+            </div> -->
+            <!-- <div class="flex controls" *ngIf="!loading">
+              <span (click)="accept()"><i class="fa fa-check" aria-hidden="true"></i></span>
+              <span (click)="decline()"><i class="fa fa-times" aria-hidden="true"></i></span>
+            </div> -->
+            <div class="sk-folding-cube" *ngIf="loading">
+              <div class="sk-cube1 sk-cube"></div>
+              <div class="sk-cube2 sk-cube"></div>
+              <div class="sk-cube4 sk-cube"></div>
+              <div class="sk-cube3 sk-cube"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

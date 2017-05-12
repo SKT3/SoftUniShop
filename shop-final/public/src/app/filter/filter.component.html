@@ -1,0 +1,35 @@
+<div class="filter text-center" *ngIf="_filter">
+    <div class="filter-block-title">{{_filter.title}}</div>
+    <div class="form-group"
+        [ngSwitch]="_filter.type" >
+      <div *ngSwitchCase="'range'">
+          <nouislider class="slider"
+                [connect]="true"
+                [step]="1"
+                [min]="_filter.min - 1"
+                [max]="_filter.max + 1"
+                [(ngModel)]="_filter.range"
+                (ngModelChange)="_filter.updateValue($event)">
+          </nouislider>
+          <div class="range">${{_filter.range[0]}} - ${{_filter.range[1]}}</div>
+      </div>
+      <div class="form-group {{_filter.type}}"
+           *ngSwitchDefault>
+          <div
+            *ngFor="let val of keys(_filter.values); let i = index;">
+              <div>
+                  <input class="magic-checkbox" type="checkbox" name="layout" id="{{_filter.name}}-{{i}}"
+                        [value]="val"
+                        (ngModel)="_filter.value"
+                        (ngModelChange)="_filter.updateValue($event, val)">
+                  <label for="{{_filter.name}}-{{i}}">
+                      <span class="filter-value-name">{{val}}</span>
+                      <span class="filter-value-count">{{_filter.values[val]}}</span>
+                  </label>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="divider">
+    </div>
+</div>

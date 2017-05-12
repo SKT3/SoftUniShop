@@ -1,0 +1,3 @@
+<div class="flex product-rating">
+  <i *ngFor="let item of [1,2,3,4,5] " (click)="selectRating(item)" class="fa" [class.fa-star]="item <= rating" [class.fa-star-o]="item > rating"></i>
+</div>

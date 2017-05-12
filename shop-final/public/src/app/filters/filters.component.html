@@ -1,0 +1,9 @@
+<div class="cd-filter col-md-2 col-md-offset-1" [class.filter-shrink]="!filterVisible" *ngIf="filters && filters.length > 0">
+    <!-- <a class="cd-close" (click)="hide()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a> -->
+    <div *ngFor="let filter of filters">
+        <div class="filter-block">
+            <filter *ngIf="filter" [filter]="filter"></filter>
+        </div>
+    </div>
+</div> <!-- cd-filter -->
+<a class="trigger-filter col-md-1" (click)="filterVisible = true" [hidden]="filterVisible"><i class="icon-large icon-adjust"></i>Filters</a>

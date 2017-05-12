@@ -1,0 +1,7 @@
+.notification-wrapper{
+    max-width: 400px;
+}
+
+div:first-child{
+    margin-top: 90px;
+}

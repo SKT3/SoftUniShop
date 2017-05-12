@@ -1,0 +1,94 @@
+.cart-quick-container{
+    width: 350px;
+    background: white;
+    color: black;
+    font-family: Montserrat;
+}
+
+.table tr td{
+    vertical-align: top;
+}
+
+.table tr td.product-remove{
+    vertical-align: top;
+    font-size: 20px;
+}
+
+.table tr td.product-remove i{
+    cursor: pointer;
+}
+
+.title{
+    text-align: left;
+    margin-bottom: 0px;
+    padding-top: 20px;
+    margin-left: 20px;
+    margin-top: 0px;
+}
+
+.subtitle{
+    text-align: left;
+    margin-left: 20px;
+    color: rgba(0,0,0,0.5);
+}
+
+.total > span{
+    margin-left: 10px;
+    color: #1dae84;
+}
+
+.total{
+    text-align: left;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.buttons{
+    justify-content: space-between;
+}
+
+.product-name{
+    font-weight: bold;
+}
+
+.product-price{
+    color: #1dae84;
+    font-weight: bold;
+
+}
+
+.times{
+    margin-left: 10px;
+    margin-right: 10px;
+    color: rgba(0,0,0,0.5);
+}
+
+
+.buttons > a{
+    width: 45%;
+    margin: auto;
+    display: inline-block;
+    border: 2px solid black;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    height: 40px;
+    line-height: 40px;
+    font-family: Montserrat;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background 0.2s ease-in;
+}
+
+.buttons > a.checkout{
+    background:#ccba9c;
+    color: white;
+    border: 2px solid #ccba9c;
+}
+
+.buttons > a.view-cart:hover{
+    background: black;
+    color: white;
+}

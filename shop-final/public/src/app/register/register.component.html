@@ -1,0 +1,24 @@
+<div class="jumbotron col-md-12">
+    <form
+        [formGroup]="registerForm"
+        (ngSubmit)="register($event)">
+        <div class="form-group" [ngClass]="{'has-error':!registerForm.controls['username'].valid && registerForm.controls['username'].touched}" >
+            <label>Username</label>
+            <input class="form-control" formControlName="username" type="username" placeholder="Your email">
+
+            <div *ngIf="registerForm.controls['username'].hasError('required') && registerForm.controls['username'].touched" class="alert alert-danger">You must include a username.</div>
+        </div>
+
+        <div class="form-group" [ngClass]="{'has-error':!registerForm.controls['password'].valid && registerForm.controls['password'].touched}">
+            <label>Password</label>
+            <input class="form-control" formControlName="password" type="password" placeholder="Password">
+            <div *ngIf="registerForm.controls['password'].hasError('required') && registerForm.controls['password'].touched" class="alert alert-danger">You must include a password.</div>
+        </div>
+      <div class="button-center" *ngIf="!loading">
+          <button  class="btn btn-primary" type="submit" [disabled]="!registerForm.valid">Sign up</button>
+      </div>
+      <div class="button-center spinner" *ngIf="loading">
+          <i class="fa fa-circle-o-notch fa-spin"></i>
+      </div>
+    </form>
+</div>
