@@ -1,6 +1,0 @@
-{
-   "/api": {
-      "target": "http://stefan_shop:8181",
-      "secure": false
-   }
-}

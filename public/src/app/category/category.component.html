@@ -1,9 +1,0 @@
-<div class="container">
-    <div class="flex row" *ngIf="category">
-        <div>{{category.name}}</div>
-    </div>
-
-    <div class="row flex" *ngIf="category">
-        <product *ngFor="let product of category.products" [input]="product"></product>
-    </div>
-</div>
